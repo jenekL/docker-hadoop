@@ -1,0 +1,19 @@
+➜  docker-hadoop git:(master) ✗ docker cp hadoop-mapreduce-examples-2.7.1-sources.jar namenode:/tmp/
+➜  docker-hadoop git:(master) ✗ nano simple-text.txt
+➜  docker-hadoop git:(master) ✗ docker cp simple-text.txt namenode:/tmp/
+➜  docker-hadoop git:(master) ✗ docker exec -it namenode /bin/bash
+
+cd tmp
+root@b57939fa97ed:/# hdfs dfs -mkdir -p /user/root/input
+root@b57939fa97ed:/# hdfs dfs -put tmp/simple-text.txt /user/root/input
+
+root@b57939fa97ed:/tmp# hadoop jar hadoop-mapreduce-examples-2.7.1-sources.jar org.apache.hadoop.examples.WordCount input output
+
+2021-12-19 17:29:20,213 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+hodupu  1
+laba    1
+lalala  2
+lalalla 1
+lupu    1
+po      1
+pupu    1
